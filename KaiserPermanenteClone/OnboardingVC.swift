@@ -20,12 +20,73 @@ final class OnboardingVC: UIViewController {
 		return label
 	}()
 	
-	let imgAnimated: UIImageView = {
+	let scrollView: UIScrollView = {
+		
+		let scrollView = UIScrollView()
+		scrollView.backgroundColor = .systemPink
+		scrollView.showsVerticalScrollIndicator = false
+		scrollView.showsHorizontalScrollIndicator = false
+		scrollView.isPagingEnabled = true
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		return scrollView
+	}()
+	
+	let contentView: UIView = {
+		
+		let view = UIView()
+		view.backgroundColor = .systemGreen
+		return view
+	}()
+	
+	let scrollContentStack1: UIStackView = {
+		
+		let stack = UIStackView()
+		stack.axis = .vertical
+		stack.alignment = .center
+		stack.spacing = 20
+		stack.translatesAutoresizingMaskIntoConstraints = false
+		return stack
+	}()
+	
+	let scrollContentStack2: UIStackView = {
+		
+		let stack = UIStackView()
+		stack.axis = .vertical
+		stack.alignment = .center
+		stack.spacing = 20
+		stack.translatesAutoresizingMaskIntoConstraints = false
+		return stack
+	}()
+	
+	let scrollContentStack3: UIStackView = {
+		
+		let stack = UIStackView()
+		stack.axis = .vertical
+		stack.alignment = .center
+		stack.spacing = 20
+		stack.translatesAutoresizingMaskIntoConstraints = false
+		return stack
+	}()
+	
+	let imgAnimated1: UIImageView = {
 		
 		let image = UIImageView()
-		image.backgroundColor = .systemOrange
-		image.translatesAutoresizingMaskIntoConstraints = false
-		image.contentMode = .scaleAspectFill
+		// image.contentMode = .scaleAspectFill
+		image.image = UIImage(systemName: "person")
+		return image
+	}()
+	
+	let imgAnimated2: UIImageView = {
+		
+		let image = UIImageView()
+		image.image = UIImage(systemName: "house")
+		return image
+	}()
+	
+	let imgAnimated3: UIImageView = {
+		
+		let image = UIImageView()
+		image.image = UIImage(systemName: "music")
 		return image
 	}()
 	
@@ -35,7 +96,28 @@ final class OnboardingVC: UIViewController {
 		label.text = "Your Health in the Palm of your Hands"
 		label.textColor = .systemBackground
 		label.font = .systemFont(ofSize: 20, weight: .semibold)
-		label.translatesAutoresizingMaskIntoConstraints = false
+		label.sizeToFit()
+		label.numberOfLines = 0
+		return label
+	}()
+	
+	let lblHeading2: UILabel = {
+		
+		let label = UILabel()
+		label.text = "Choose how you get Care"
+		label.textColor = .systemBackground
+		label.font = .systemFont(ofSize: 20, weight: .semibold)
+		label.sizeToFit()
+		label.numberOfLines = 0
+		return label
+	}()
+	
+	let lblHeading3: UILabel = {
+		
+		let label = UILabel()
+		label.text = "Medical Information Anywhere"
+		label.textColor = .systemBackground
+		label.font = .systemFont(ofSize: 20, weight: .semibold)
 		label.sizeToFit()
 		label.numberOfLines = 0
 		return label
@@ -50,7 +132,30 @@ final class OnboardingVC: UIViewController {
 		label.numberOfLines = 0
 		label.textAlignment = .center
 		label.sizeToFit()
-		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
+	
+	let lblSubHeading2: UILabel = {
+		
+		let label = UILabel()
+		label.text = "Search for doctors and locations, contact medical professionals for advice, and schedule care"
+		label.textColor = .systemBackground
+		label.font = .systemFont(ofSize: 18)
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.sizeToFit()
+		return label
+	}()
+	
+	let lblSubHeading3: UILabel = {
+		
+		let label = UILabel()
+		label.text = "Securely review medical records and get test results"
+		label.textColor = .systemBackground
+		label.font = .systemFont(ofSize: 18)
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.sizeToFit()
 		return label
 	}()
 	
@@ -87,16 +192,34 @@ final class OnboardingVC: UIViewController {
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		.lightContent
 	}
-
+	
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
 		
 		view.backgroundColor = .systemIndigo
+		
 		view.addSubview(lblTitle)
-		view.addSubview(imgAnimated)
-		view.addSubview(lblHeading1)
-		view.addSubview(lblSubHeading1)
+		
+		scrollContentStack1.addArrangedSubview(imgAnimated1)
+		scrollContentStack1.addArrangedSubview(lblHeading1)
+		scrollContentStack1.addArrangedSubview(lblSubHeading1)
+		
+		scrollContentStack2.addArrangedSubview(imgAnimated2)
+		scrollContentStack2.addArrangedSubview(lblHeading2)
+		scrollContentStack2.addArrangedSubview(lblSubHeading2)
+		
+		scrollContentStack3.addArrangedSubview(imgAnimated3)
+		scrollContentStack3.addArrangedSubview(lblHeading3)
+		scrollContentStack3.addArrangedSubview(lblSubHeading3)
+		
+		contentView.addSubview(scrollContentStack1)
+		contentView.addSubview(scrollContentStack2)
+		contentView.addSubview(scrollContentStack3)
+		
+		scrollView.addSubview(contentView)
+		
+		view.addSubview(scrollView)
 		view.addSubview(btnSignIn)
 		view.addSubview(btnRegister)
 		view.addSubview(pageIndicator)
@@ -105,58 +228,40 @@ final class OnboardingVC: UIViewController {
 	}
 	
 	override func viewDidLayoutSubviews() {
+		
 		super.viewDidLayoutSubviews()
+		// scrollContentStack.frame = scrollContentView.bounds
 	}
 	
 	private func configureConstraints() {
 		
-		let lblTitleConstraints = [
-			lblTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-			lblTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-		]
+		lblTitle.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
+		lblTitle.center(centerX: view.centerXAnchor)
 		
-		let imgAnimatedConstraints = [
-			imgAnimated.topAnchor.constraint(equalTo: lblTitle.bottomAnchor, constant: 40),
-			imgAnimated.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			imgAnimated.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-			imgAnimated.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-			imgAnimated.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
-			imgAnimated.widthAnchor.constraint(equalTo: imgAnimated.heightAnchor)
-		]
+		scrollView.center(centerX: view.centerXAnchor)
+		scrollView.anchor(top: lblTitle.bottomAnchor, paddingTop: 40, bottom: btnSignIn.topAnchor, paddingBottom: -40, left: view.leadingAnchor, paddingLeft: 30, right: view.trailingAnchor, paddingRight: -30)
 		
-		let lblHeading1Constraints = [
-			lblHeading1.topAnchor.constraint(equalTo: imgAnimated.bottomAnchor, constant: 40),
-			lblHeading1.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-		]
+		contentView.anchor(top: scrollView.topAnchor, bottom: scrollView.bottomAnchor)
+		contentView.anchor(left: scrollView.leadingAnchor, right: scrollView.trailingAnchor)
+		contentView.setSize(width: 3 * view.frame.size.width)
+		// contentView.proportionalSize(height: scrollView.frameLayoutGuide.heightAnchor, heightPercent: 1)
 		
-		let lblSubHeading1Constraints = [
-			lblSubHeading1.topAnchor.constraint(equalTo: lblHeading1.bottomAnchor, constant: 20),
-			lblSubHeading1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-			lblSubHeading1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-			lblSubHeading1.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-		]
+		scrollContentStack1.anchor(top: contentView.topAnchor)
+		scrollContentStack1.anchor(left: scrollView.leadingAnchor, right: scrollContentStack2.leadingAnchor)
+		scrollContentStack1.setSize(width: scrollView.frame.size.width)
 		
-		let btnSignInConstraints = [
-			btnSignIn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-			btnSignIn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15)
-		]
+		scrollContentStack2.anchor(top: contentView.topAnchor)
+		scrollContentStack2.anchor(left: scrollContentStack1.trailingAnchor, right: scrollContentStack3.leadingAnchor)
+		scrollContentStack2.setSize(width: scrollView.frame.size.width)
 		
-		let btnRegisterConstraints = [
-			btnRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-			btnRegister.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15)
-		]
+		scrollContentStack3.anchor(top: contentView.topAnchor)
+		scrollContentStack3.anchor(left: scrollContentStack2.trailingAnchor, right: scrollView.trailingAnchor)
+		scrollContentStack3.setSize(width: scrollView.frame.size.width)
 		
-		let pageIndicatorConstraints = [
-			pageIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			pageIndicator.centerYAnchor.constraint(equalTo: btnSignIn.centerYAnchor),
-		]
+		btnSignIn.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: -15, left: view.leadingAnchor, paddingLeft: 30)
 		
-		NSLayoutConstraint.activate(lblTitleConstraints)
-		NSLayoutConstraint.activate(imgAnimatedConstraints)
-		NSLayoutConstraint.activate(lblHeading1Constraints)
-		NSLayoutConstraint.activate(lblSubHeading1Constraints)
-		NSLayoutConstraint.activate(btnSignInConstraints)
-		NSLayoutConstraint.activate(btnRegisterConstraints)
-		NSLayoutConstraint.activate(pageIndicatorConstraints)
+		btnRegister.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: -15, right: view.trailingAnchor, paddingRight: -30)
+		
+		pageIndicator.center(centerX: view.centerXAnchor, centerY: btnSignIn.centerYAnchor)
 	}
 }

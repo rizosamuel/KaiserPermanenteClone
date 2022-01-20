@@ -12,6 +12,8 @@
 		73585AEA2795C9FB00C9AD83 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73585AE92795C9FB00C9AD83 /* OnboardingVC.swift */; };
 		73585AEF2795C9FC00C9AD83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73585AEE2795C9FC00C9AD83 /* Assets.xcassets */; };
 		73585AF22795C9FC00C9AD83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73585AF02795C9FC00C9AD83 /* LaunchScreen.storyboard */; };
+		7358AA8327964FB40014CE8B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358AA8227964FB40014CE8B /* Extensions.swift */; };
+		7358AA8527965EAB0014CE8B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358AA8427965EAB0014CE8B /* HomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		73585AEE2795C9FC00C9AD83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73585AF12795C9FC00C9AD83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73585AF32795C9FC00C9AD83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7358AA8227964FB40014CE8B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7358AA8427965EAB0014CE8B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				73585AE52795C9FB00C9AD83 /* AppDelegate.swift */,
 				73585AE72795C9FB00C9AD83 /* SceneDelegate.swift */,
 				73585AE92795C9FB00C9AD83 /* OnboardingVC.swift */,
+				7358AA8427965EAB0014CE8B /* HomeVC.swift */,
+				7358AA8227964FB40014CE8B /* Extensions.swift */,
 				73585AEE2795C9FC00C9AD83 /* Assets.xcassets */,
 				73585AF02795C9FC00C9AD83 /* LaunchScreen.storyboard */,
 				73585AF32795C9FC00C9AD83 /* Info.plist */,
@@ -135,8 +141,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73585AEA2795C9FB00C9AD83 /* OnboardingVC.swift in Sources */,
+				7358AA8527965EAB0014CE8B /* HomeVC.swift in Sources */,
 				73585AE62795C9FB00C9AD83 /* AppDelegate.swift in Sources */,
 				73585AE82795C9FB00C9AD83 /* SceneDelegate.swift in Sources */,
+				7358AA8327964FB40014CE8B /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
